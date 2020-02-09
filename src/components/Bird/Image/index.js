@@ -1,3 +1,3 @@
-import Image from './Navbar';
+import Image from './Image';
 
 export default Image;

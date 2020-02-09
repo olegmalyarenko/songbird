@@ -1,22 +1,60 @@
 import React, {Component} from 'react';
 import './App.scss';
-import Header from '../Header';
 import Logo from '../Logo';
 import Navbar from '../Navbar';
+import Score from '../Score';
+import Image from '../Bird/Image';
+import Song from '../Bird/Song';
+import GetBird from '../../servises/getData';
 
 export default class App extends Component {
+  
+  state = {
+      url: null,
+      subtitle: 'Parus major',
+      song: null,
+  }
+  
+  bird = new GetBird();
+
+  constructor() {
+      super();
+    this.getImage();
+    this.getSong();
+  }
+
+  getImage() {
+    this.bird.image(this.state.subtitle)
+      .then((res) => {
+        this.setState({
+          url: res,
+        })
+      })
+  }
+
+  getSong() {
+    this.bird.audio(this.state.subtitle)
+      .then((res) => {
+        this.setState({
+          song: res,
+        })
+      })
+  }
+
+  
   render() {
     return (
       <>
-        <Header />
+        <Score />
         <Logo />
         <main>
           <Navbar />
           <div className="quiz">
+            <Image src={this.state.url} />
             <div className="bird-img"></div>
             <div className="bird-info">
               <div className="bird-title"></div>
-              <div className="audioplayer"></div>
+              <Song src={this.state.song} />
             </div>
           </div>
           <ul className="answer-list">
@@ -35,7 +73,7 @@ export default class App extends Component {
 
                 <h2 className="answer-sub-title"></h2>
 
-                <div className="audioplayer"></div>
+                <Song src={this.state.song} />
               </div>
             </div>
 
@@ -50,3 +88,6 @@ export default class App extends Component {
     );
   }
 }
+
+
+
