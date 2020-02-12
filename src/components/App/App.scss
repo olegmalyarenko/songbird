@@ -2,3 +2,67 @@
   color: red;
   font-size: 40px;
 }
+body {
+  background-color: #222;
+  font-family: Arial;
+  
+}
+
+#root {
+  margin: 0 auto;
+}
+
+li {
+  list-style: none;
+}
+
+.answer-block {
+  display:flex;
+  justify-content: space-around;
+  align-content: center;
+  width: 80%;
+  margin-left: 10%;
+
+}
+
+main {
+   display:flex;
+    flex-direction: column;
+  justify-content: center;
+  align-content: center;
+
+}
+
+
+  .answer-description {
+    
+    margin-top: 10px;
+  }
+
+  .bird-img {
+   
+    margin-right: 10px;
+  }
+
+
+
+
+
+
+.header {
+  display:flex;
+  justify-content: space-between;
+  align-content: center;
+  padding-top: 20px;
+  width: 75%;
+  margin-left: 10%;
+  margin-bottom: 3px;
+}
+
+.button {
+  width: 80%;
+    margin-left: 10%;
+    background-color: #303030;
+    border: 1px solid #444;
+    color: #fff!important;
+}

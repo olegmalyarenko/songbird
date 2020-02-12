@@ -1,87 +1,98 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './App.scss';
 import Logo from '../Logo';
 import Navbar from '../Navbar';
+import AnswerList from '../AnswerList';
 import Score from '../Score';
-import Image from '../Bird/Image';
-import Song from '../Bird/Song';
-import GetBird from '../../servises/getData';
+import Quiz from '../Quiz';
+import birdsData from '../../data/birdsData.js';
+import AnswerCard from '../AnswerCard';
+
 
 export default class App extends Component {
-  
+
   state = {
-      url: null,
-      subtitle: 'Parus major',
-      song: null,
+    image: null,
+    species: null,
+    audio: null,
+    birds: birdsData[0],
+    answer: null,
+    name: null,
+    description: null,
+    check: null, 
+    birdDetails: {
+      image: null,
+      species: 'Послушайте плеер.Выберите птицу из списка',
+      audio: null,
+      description: null,
+    }
   }
+  componentDidMount() {
+    this.randomChoice();
+    this.setState({
+      name: '*******',
+      species: null,
+      description: null,
+      image: 'https://whatsism.com/templates/whatsapp/images/question.svg',
+    })
+  }
+
+  randomChoice() {
+    const index = Math.floor((Math.random() * 5));
+    const el = this.state.birds[index].species;
+    console.log(el);
+    this.setState({
+      image: this.state.birds[index].image,
+      audio: this.state.birds[index].audio,
+      species: this.state.birds[index].species,
+      name: this.state.birds[index].name,
+      check: this.state.birds[index].name,
+      description: this.state.birds[index].description,
+    })
+  }
+  check = this.state.check;
+
   
-  bird = new GetBird();
-
-  constructor() {
-      super();
-    this.getImage();
-    this.getSong();
-  }
-
-  getImage() {
-    this.bird.image(this.state.subtitle)
-      .then((res) => {
-        this.setState({
-          url: res,
-        })
-      })
-  }
-
-  getSong() {
-    this.bird.audio(this.state.subtitle)
-      .then((res) => {
-        this.setState({
-          song: res,
-        })
-      })
+  sayHi(e,check) {
+    console.log(e.target.dataset.value);
+    console.log(check);
+    
+    /*if (e.target.dataset.value === this.state.check){
+      console.log(true);
+    } else {
+      console.log(false);
+    }*/
   }
 
   
+
   render() {
     return (
       <>
-        <Score />
+        <header className='header'>
         <Logo />
+        <Score />
+        </header>
+
         <main>
           <Navbar />
-          <div className="quiz">
-            <Image src={this.state.url} />
-            <div className="bird-img"></div>
-            <div className="bird-info">
-              <div className="bird-title"></div>
-              <Song src={this.state.song} />
-            </div>
+          <Quiz
+            title={this.state.name}
+            song={this.state.audio}
+            image={this.state.image}
+          />
+          <div className="answer-block">
+          <AnswerList 
+          titles={this.state.birds} 
+          sayHi={this.sayHi} 
+          />
+          <AnswerCard
+            title={this.state.birdDetails.name}
+            src={this.state.birdDetails.image}
+            species={this.state.birdDetails.species}
+            text={this.state.birdDetails.description}
+          />
           </div>
-          <ul className="answer-list">
-            <li>Орел</li>
-            <li>Коршун</li>
-            <li>Лунь</li>
-            <li>Сокол</li>
-          </ul>
-          <div className="answer-card">
-
-            <div className="answer-header">
-              <div className="answer-img"></div>
-
-              <div className="answer-info">
-                <h2 className="answer-title"></h2>
-
-                <h2 className="answer-sub-title"></h2>
-
-                <Song src={this.state.song} />
-              </div>
-            </div>
-
-            <div className="answer-description">
-
-            </div>
-          </div>
-
           <button className="button level">Next level</button>
         </main>
       </>
