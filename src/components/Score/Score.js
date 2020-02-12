@@ -7,7 +7,7 @@ export default class Score extends Component {
     return (
           <h2 className="score">
             Score:
-            <span className="current-score">10</span>
+            <span className="current-score">0</span>
           </h2>
     )
   }

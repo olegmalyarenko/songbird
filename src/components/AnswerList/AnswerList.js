@@ -1,19 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import birdsData from '../../data/birdsData.js';
 import './AnswerList.scss';
 console.log(birdsData);
 
 
-  
-const AnswerList = ({ titles, sayHi }) => {
-// 
-
-  const elements = titles.map((el) => {
+const AnswerList = ({ section, selectAnswer }) => {
+ 
+console.log(birdsData[section]);
+  const elements = birdsData[section].map((el) => {
     return (
       <li 
         className="answer-item"  //  
-        key={el.id} 
-        onClick = {sayHi}
+        key={el.name} 
+        onClick = {selectAnswer}
         data-value = {el.name} > 
          <span className="chBox"></span>
         {el.name}

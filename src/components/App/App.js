@@ -12,58 +12,54 @@ import AnswerCard from '../AnswerCard';
 export default class App extends Component {
 
   state = {
-    image: null,
-    species: null,
-    audio: null,
-    birds: birdsData[0],
-    answer: null,
-    name: null,
-    description: null,
-    check: null, 
-    birdDetails: {
-      image: null,
-      species: 'Послушайте плеер.Выберите птицу из списка',
-      audio: null,
-      description: null,
-    }
+    section: 0,
+    randomID: 0,
+    selectedID: 0,
+    selected: false,
+    selectAnswer: 0,
+    score: 0,
+    attempt: 0,
+    win: false,
+    id: 0,
+    
   }
   componentDidMount() {
-    this.randomChoice();
+    
     this.setState({
-      name: '*******',
-      species: null,
-      description: null,
-      image: 'https://whatsism.com/templates/whatsapp/images/question.svg',
-    })
+      randomID: this.randomChoice()
+    });
   }
 
   randomChoice() {
-    const index = Math.floor((Math.random() * 5));
-    const el = this.state.birds[index].species;
-    console.log(el);
-    this.setState({
-      image: this.state.birds[index].image,
-      audio: this.state.birds[index].audio,
-      species: this.state.birds[index].species,
-      name: this.state.birds[index].name,
-      check: this.state.birds[index].name,
-      description: this.state.birds[index].description,
-    })
-  }
-  check = this.state.check;
-
-  
-  sayHi(e,check) {
-    console.log(e.target.dataset.value);
-    console.log(check);
+    return Math.floor((Math.random() * 6) + 1);
     
-    /*if (e.target.dataset.value === this.state.check){
-      console.log(true);
-    } else {
-      console.log(false);
-    }*/
   }
+  
+selectAnswer = (id, e) => {
+  e.persist();
+  this.setState( {
+    selectedID: id - 1,
+    selected: true,
+  });
 
+  if (!e.target.classList.contains('correct') && !e.target.classList.contains('incorrect')) {
+    this.setState( (state) => ({
+      attempt: state.attempt +1
+  }));
+ }
+  this.checkAnswer(id);
+  //this.styleAnswer(e);
+}
+
+checkAnswer = (id) => {
+  if (id - 1 != this.state.randomID || this.state.win) return;
+  this.setState ( (state) => ({
+    score: state.score + 5 - this.state.attempt,
+    win: true
+  }))
+};
+  
+  
   
 
   render() {
@@ -77,20 +73,20 @@ export default class App extends Component {
         <main>
           <Navbar />
           <Quiz
-            title={this.state.name}
-            song={this.state.audio}
-            image={this.state.image}
+            section={this.state.section}
+            win={this.state.win}
+            randomID={this.state.randomID}
           />
           <div className="answer-block">
           <AnswerList 
-          titles={this.state.birds} 
-          sayHi={this.sayHi} 
+          section={this.state.section} 
+          selectAnswer={this.state.selectAnswer} 
+          
           />
           <AnswerCard
-            title={this.state.birdDetails.name}
-            src={this.state.birdDetails.image}
-            species={this.state.birdDetails.species}
-            text={this.state.birdDetails.description}
+            section={this.state.section} 
+            selected={this.state.selectAnswer}
+            selectedID={this.state.selectedID} 
           />
           </div>
           <button className="button level">Next level</button>
@@ -98,7 +94,5 @@ export default class App extends Component {
       </>
     );
   }
-}
 
-
-
+};  
