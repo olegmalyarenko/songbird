@@ -7,7 +7,7 @@ export default class Navbar extends Component {
     return (
       <nav className="navigation">
         <ul className="menu-nav">
-          <li>Разминка</li>
+          <li className="active">Разминка</li>
           <li>Воробьиные</li>
           <li>Лесные птицы</li>
           <li>Певчие птицы</li>

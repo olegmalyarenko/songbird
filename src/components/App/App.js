@@ -53,19 +53,29 @@ selectAnswer = (id, e) => {
 checkAnswer = (id) => {
   if (id - 1 != this.state.randomID || this.state.win) return;
   this.setState ( (state) => ({
+    win: true,
     score: state.score + 5 - this.state.attempt,
-    win: true
   }))
+  
 };
 
 styleAnswer = (e) => {
     if (e._targetInst.key - 1 === this.state.randomID && !this.state.win){
     e.target.children[0].classList.add('true');
+    document.querySelector('button').classList.add('active-button');
+    
   } else if (e._targetInst.key - 1 != this.state.randomID && !this.state.win ){
   e.target.children[0].classList.add('false');
   }
 }
+
+upLevel = (e) => { 
   
+  if (e.target.classList.contains('active-button')) {
+    document.querySelector('active').classList.remove('active');
+
+  }
+}
   
 
   render() {
@@ -94,7 +104,7 @@ styleAnswer = (e) => {
             selectedID={this.state.selectedID} 
           />
           </div>
-          <Button />
+          <Button upLevel={this.upLevel} />
         </main>
       </>
     );
