@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import './Song.scss';
 
+const Song = ({ song
+}) => {
+  return (
+    <div className="audioplayer">
+      <audio src={song} controls></audio>
+    </div>
+  );
+};
 
-export default class Song extends Component {
+export default Song;
 
-  render() {
-    const { src } = this.props;
-    console.log(src);
-    return (
-        
-        <div className="audioplayer">
-            <audio src={src} controls></audio>
-        </div>
-        
-    )
-  }
-}

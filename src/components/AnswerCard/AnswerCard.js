@@ -7,6 +7,9 @@ import birdsData from '../../data/birdsData.js';
 import './AnswerCard.scss';
 
 const AnswerCard = ({ section, selectedID, selected}) => {
+  console.log(section);
+  console.log(selectedID);
+  console.log(selected);
   const style = {
     display: selected ? 'none' : 'block',
   };
@@ -27,10 +30,10 @@ const AnswerCard = ({ section, selectedID, selected}) => {
     <>
       <div className="answer-card">
         <div className="answer-header">
-        <Image image={birdsData[section][selectedID].image} />
+        <Image src={birdsData[section][selectedID].image} />
         
           <div className="answer-info">
-            <Title name={birdsData[section][selectedID].name} />
+            <Title title={birdsData[section][selectedID].name} />
             <Sub species={birdsData[section][selectedID].species} />
           </div>
         </div>

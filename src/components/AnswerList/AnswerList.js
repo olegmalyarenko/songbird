@@ -11,10 +11,10 @@ console.log(birdsData[section]);
     return (
       <li 
         className="answer-item"  //  
-        key={el.name} 
-        onClick = {selectAnswer}
+        key={el.id} 
+        onClick = {(e) => selectAnswer(el.id, e)}
         data-value = {el.name} > 
-         <span className="chBox"></span>
+         <span className="chBox"/>
         {el.name}
       </li>
     )

@@ -22,3 +22,21 @@
 }
 
 
+@media (min-width: 600px) and (max-width: 1050px) {
+  .menu-nav { 
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 599px) {
+  .menu-nav { 
+    font-size: 18px;
+  }
+}
+
+
+@media all and (max-width: 399px) {
+  .menu-nav { 
+    font-size: 14px;
+  }
+}

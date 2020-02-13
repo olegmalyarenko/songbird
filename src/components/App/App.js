@@ -5,7 +5,7 @@ import Navbar from '../Navbar';
 import AnswerList from '../AnswerList';
 import Score from '../Score';
 import Quiz from '../Quiz';
-import birdsData from '../../data/birdsData.js';
+import Button from '../Button';
 import AnswerCard from '../AnswerCard';
 
 
@@ -16,7 +16,6 @@ export default class App extends Component {
     randomID: 0,
     selectedID: 0,
     selected: false,
-    selectAnswer: 0,
     score: 0,
     attempt: 0,
     win: false,
@@ -31,12 +30,12 @@ export default class App extends Component {
   }
 
   randomChoice() {
-    return Math.floor((Math.random() * 6) + 1);
+    return Math.floor((Math.random() * 6));
     
   }
   
 selectAnswer = (id, e) => {
-  e.persist();
+  //e.persist();
   this.setState( {
     selectedID: id - 1,
     selected: true,
@@ -46,7 +45,7 @@ selectAnswer = (id, e) => {
     this.setState( (state) => ({
       attempt: state.attempt +1
   }));
- }
+}
   this.checkAnswer(id);
   //this.styleAnswer(e);
 }
@@ -79,17 +78,16 @@ checkAnswer = (id) => {
           />
           <div className="answer-block">
           <AnswerList 
-          section={this.state.section} 
-          selectAnswer={this.state.selectAnswer} 
-          
+            section={this.state.section} 
+              selectAnswer={this.selectAnswer}
           />
           <AnswerCard
             section={this.state.section} 
-            selected={this.state.selectAnswer}
+            selected={this.state.selected}
             selectedID={this.state.selectedID} 
           />
           </div>
-          <button className="button level">Next level</button>
+          <Button />
         </main>
       </>
     );
