@@ -73,7 +73,7 @@ styleAnswer = (e) => {
       <>
         <header className='header'>
         <Logo />
-        <Score />
+        <Score score={this.state.score}/>
         </header>
 
         <main>

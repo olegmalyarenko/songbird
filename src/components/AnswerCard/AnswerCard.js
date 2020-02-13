@@ -36,7 +36,7 @@ const AnswerCard = ({ section, selectedID, selected}) => {
     <>
       <div className="answer-card">
         <div className="answer-header">
-        <Image src={src} />
+        <Image className= "bird-details" src={src} />
         
           <div className="answer-info">
             <Title title={title} />

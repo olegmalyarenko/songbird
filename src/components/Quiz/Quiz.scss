@@ -14,12 +14,23 @@
   padding-right: 15%;
   
 }
+.bird-img {
+  border-radius: 10px;
+}
+
+@media (min-width: 671px) and (max-width: 770px) {
+  .bird-img {
+    width: 250px;
+  }
+}
 
 @media (min-width: 400px) and (max-width: 670px) {
     .audioplayer  audio {
     width: 250px;
   }
-
+  .bird-img {
+    width: 180px;
+  }
 
 }
 
@@ -44,7 +55,7 @@
 
 }
 
-@media (min-width: 300px) and (max-width: 449px) { 
+@media all and (max-width: 449px) { 
   .bird-img {
     width: 100px;
   }
