@@ -3,6 +3,7 @@ import Description from '../Bird/Description/Description';
 import Title from '../Bird/Title';
 import Sub from '../Bird/Sub/Sub';
 import Image from '../Bird/Image';
+import Song from '../Bird/Song';
 import birdsData from '../../data/birdsData.js';
 import './AnswerCard.scss';
 
@@ -10,6 +11,11 @@ const AnswerCard = ({ section, selectedID, selected}) => {
   console.log(section);
   console.log(selectedID);
   console.log(selected);
+  const src = birdsData[section][selectedID].image;
+  const title = birdsData[section][selectedID].name;
+  const song = birdsData[section][selectedID].audio;
+  const species = birdsData[section][selectedID].species;
+  const text = birdsData[section][selectedID].description;
   const style = {
     display: selected ? 'none' : 'block',
   };
@@ -30,15 +36,16 @@ const AnswerCard = ({ section, selectedID, selected}) => {
     <>
       <div className="answer-card">
         <div className="answer-header">
-        <Image src={birdsData[section][selectedID].image} />
+        <Image src={src} />
         
           <div className="answer-info">
-            <Title title={birdsData[section][selectedID].name} />
-            <Sub species={birdsData[section][selectedID].species} />
+            <Title title={title} />
+            <Sub species={species} />
+            <Song song={song} /> 
           </div>
         </div>
         <div className="answer-description">
-          <Description text={birdsData[section][selectedID].description} />
+          <Description text={text} />
         </div>
       </div>
     </>

@@ -41,13 +41,13 @@ selectAnswer = (id, e) => {
     selected: true,
   });
 
-  if (!e.target.classList.contains('correct') && !e.target.classList.contains('incorrect')) {
+  if (!e.target.classList.contains('true') && !e.target.classList.contains('false')) {
     this.setState( (state) => ({
       attempt: state.attempt +1
   }));
 }
   this.checkAnswer(id);
-  //this.styleAnswer(e);
+  this.styleAnswer(e);
 }
 
 checkAnswer = (id) => {
@@ -57,7 +57,14 @@ checkAnswer = (id) => {
     win: true
   }))
 };
-  
+
+styleAnswer = (e) => {
+    if (e._targetInst.key - 1 === this.state.randomID && !this.state.win){
+    e.target.children[0].classList.add('true');
+  } else if (e._targetInst.key - 1 != this.state.randomID && !this.state.win ){
+  e.target.children[0].classList.add('false');
+  }
+}
   
   
 
