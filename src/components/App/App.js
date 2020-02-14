@@ -133,11 +133,7 @@ gameOver = () => {
         <Score score={this.state.score}/>
         </header>
                 
-        <GameOver
-        gameOver={this.state.gameOver}
-        score={this.state.score}
-        action={this.newGame}/>
-        
+             
         <main className="content">
           <Navbar section={this.state.section} 
           />
@@ -161,6 +157,10 @@ gameOver = () => {
           label="Next level"
           action={this.upLevel} />
         </main>
+        <GameOver
+          gameOver={this.state.gameOver}
+          score={this.state.score}
+          action={this.newGame}/>
       </>
     );
   }
