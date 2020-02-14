@@ -107,7 +107,7 @@ upLevelStyle = () => {
 
   newGame = () => {
   const content = document.querySelector('.content');
-  const winner = document.querySelector('.end-game');
+  const winner = document.querySelector('.game-over');
   content.style.display = 'block';
   winner.style.display = 'none';
   this.setState({

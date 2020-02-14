@@ -39,3 +39,22 @@
 .false {
   background-color: tomato;
 }
+
+@media (min-width: 365px) and (max-width: 500px) {
+  .answer-item { 
+    font-size: 12px;
+  } 
+}
+
+@media (min-width: 341px) and (max-width: 364px) {
+  .answer-item { 
+    font-size: 10px;
+  } 
+}
+
+
+@media all and (max-width: 340px) {
+  .answer-item { 
+    font-size: 5px;
+  } 
+}

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import './GameOver.scss';
 import Button from '../Button';
 
@@ -22,8 +21,7 @@ export default class GameOver extends Component {
         action={action}
       />
     );
-    //const elem = gameOver ? winner : null;
-    //const btn = gameOver ? button : null;
+    
 
     return (
       <div className="game-over">
@@ -34,6 +32,3 @@ export default class GameOver extends Component {
   }
 }
 
-GameOver.propTypes = {
-  gameOver: PropTypes.bool,
-};

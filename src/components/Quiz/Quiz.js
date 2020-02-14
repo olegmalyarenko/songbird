@@ -8,9 +8,7 @@ import './Quiz.scss';
 
 
 const Quiz = ({ win, section, randomID }) => {
-  console.log(win);
-  console.log(section);
-  console.log(randomID);
+  
   const alt = win ? birdsData[section][randomID].name : null;
   const src = win ? birdsData[section][randomID].image : defaultImage;
   const title = win ? birdsData[section][randomID].name : '*****';

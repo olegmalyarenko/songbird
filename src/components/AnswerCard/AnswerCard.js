@@ -8,9 +8,7 @@ import birdsData from '../../data/birdsData.js';
 import './AnswerCard.scss';
 
 const AnswerCard = ({ section, selectedID, selected}) => {
-  console.log(section);
-  console.log(selectedID);
-  console.log(selected);
+  
   const src = birdsData[section][selectedID].image;
   const title = birdsData[section][selectedID].name;
   const song = birdsData[section][selectedID].audio;
@@ -55,7 +53,6 @@ const AnswerCard = ({ section, selectedID, selected}) => {
   return (
     
     selected ? elem : defaultCard
-   
   )
 };
 
