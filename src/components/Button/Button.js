@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 
 import  './Button.scss';
 
-const Button = ({ upLevel }) => { 
+const Button = ({ action, label }) => { 
    return (
       <button className="button"
-      onClick = {() => upLevel()}
-      >Next level</button>
+      onClick = {action}
+   >{label}</button>
       )
 }
 
 export default Button;
+
+

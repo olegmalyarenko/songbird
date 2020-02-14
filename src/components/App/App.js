@@ -6,6 +6,7 @@ import AnswerList from '../AnswerList';
 import Score from '../Score';
 import Quiz from '../Quiz';
 import Button from '../Button';
+import GameOver from '../GameOver';
 import AnswerCard from '../AnswerCard';
 
 
@@ -20,6 +21,7 @@ export default class App extends Component {
     attempt: 0,
     win: false,
     id: 0,
+    gameOver: false,
     
   }
   componentDidMount() {
@@ -61,7 +63,8 @@ checkAnswer = (id) => {
 styleAnswer = (e) => {
     if (e._targetInst.key - 1 === this.state.randomID && !this.state.win){
     e.target.children[0].classList.add('true');
-    document.querySelector('button').classList.add('active-button');
+    const button = document.querySelector('.button');
+    button.classList.add('active-button');
     
   } else if (e._targetInst.key - 1 != this.state.randomID && !this.state.win ){
   e.target.children[0].classList.add('false');
@@ -73,10 +76,10 @@ upLevel = () => {
   if (this.state.section === 5) {
     this.setState({
       section: -1,
-      endGame: true,
+      gameOver: true,
       win: false
     });
-    this.endGame();
+    this.gameOver();
   }
   this.setState((state) => ({
     attempt: 0,
@@ -86,10 +89,10 @@ upLevel = () => {
     randomID: this.randomChoice(),
     selectedID: 0
   }));
-  this.upLevelStyel();
+  this.upLevelStyle();
 };
 
-upLevelStyel = () => { 
+upLevelStyle = () => { 
   
   if (document.querySelector('.button').classList.contains('active-button')) {
     const answers = document.querySelectorAll('.chBox');
@@ -97,21 +100,45 @@ upLevelStyel = () => {
       el.className = 'chBox';
       
     });
-    document.querySelector('.button').classList.remove('active-button');
-
+    const button = document.querySelector('.button');
+    button.classList.remove('active-button');
   }
 }
-  
+
+  newGame = () => {
+  const content = document.querySelector('.content');
+  const winner = document.querySelector('.end-game');
+  content.style.display = 'block';
+  winner.style.display = 'none';
+  this.setState({
+    score: 0,
+    gameOver: false,
+  })
+
+};
+
+gameOver = () => {
+  const content = document.querySelector('.content');
+  content.style.display = 'none';
+  const gameOverBlock = document.querySelector('.game-over');
+  gameOverBlock.style.display = 'block';
+}; 
 
   render() {
+    
     return (
       <>
         <header className='header'>
         <Logo />
         <Score score={this.state.score}/>
         </header>
-
-        <main>
+                
+        <GameOver
+        gameOver={this.state.gameOver}
+        score={this.state.score}
+        action={this.newGame}/>
+        
+        <main className="content">
           <Navbar section={this.state.section} 
           />
           <Quiz
@@ -130,7 +157,9 @@ upLevelStyel = () => {
             selectedID={this.state.selectedID} 
           />
           </div>
-          <Button upLevel={this.upLevel} />
+          <Button 
+          label="Next level"
+          action={this.upLevel} />
         </main>
       </>
     );
