@@ -2,21 +2,33 @@ import React, { Component } from 'react';
 import './Navbar.scss';
 
 
-export default class Navbar extends Component {
+
+export default class NavBar extends Component {
+  componentDidUpdate() {
+    const section = document.querySelectorAll('.section');
+    section.forEach((el, index) => {
+      el.classList.remove('active');
+      if (index === this.props.section) {
+        el.classList.add('active');
+      }
+    });
+  }
+
   render() {
     return (
       <nav className="navigation">
         <ul className="menu-nav">
-          <li className="active">Разминка</li>
-          <li>Воробьиные</li>
-          <li>Лесные птицы</li>
-          <li>Певчие птицы</li>
-          <li>Хищьные птицы</li>
-          <li>Морские птицы</li>
+          <li className="section">Разминка</li>
+          <li className="section">Воробьиные</li>
+          <li className="section">Лесные птицы</li>
+          <li className="section">Певчие птицы</li>
+          <li className="section">Хищьные птицы</li>
+          <li className="section">Морские птицы</li>
         </ul>
       </nav>
 
     )
-  }
-}
+  
+};
 
+}

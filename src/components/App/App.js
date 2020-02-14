@@ -35,8 +35,7 @@ export default class App extends Component {
   }
   
 selectAnswer = (id, e) => {
-  //e.persist();
-  this.setState( {
+    this.setState( {
     selectedID: id - 1,
     selected: true,
   });
@@ -69,10 +68,36 @@ styleAnswer = (e) => {
   }
 }
 
-upLevel = (e) => { 
+upLevel = () => {
+  if (!this.state.win) return true;
+  if (this.state.section === 5) {
+    this.setState({
+      section: -1,
+      endGame: true,
+      win: false
+    });
+    this.endGame();
+  }
+  this.setState((state) => ({
+    attempt: 0,
+    section: state.section + 1,
+    win: false,
+    selected: false,
+    randomID: this.randomChoice(),
+    selectedID: 0
+  }));
+  this.upLevelStyel();
+};
+
+upLevelStyel = () => { 
   
-  if (e.target.classList.contains('active-button')) {
-    document.querySelector('active').classList.remove('active');
+  if (document.querySelector('.button').classList.contains('active-button')) {
+    const answers = document.querySelectorAll('.chBox');
+    answers.forEach((el) => {
+      el.className = 'chBox';
+      
+    });
+    document.querySelector('.button').classList.remove('active-button');
 
   }
 }
@@ -87,7 +112,8 @@ upLevel = (e) => {
         </header>
 
         <main>
-          <Navbar />
+          <Navbar section={this.state.section} 
+          />
           <Quiz
             section={this.state.section}
             win={this.state.win}
