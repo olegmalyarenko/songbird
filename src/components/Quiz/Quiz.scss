@@ -1,0 +1,67 @@
+.quiz {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  border: 3px solid black;
+  padding: 5px;
+  width: 79%;
+  height: 155px;
+  margin-left: 10%;
+  background-color: #303030;
+    border-radius: 0.3rem;
+}
+.bird-info {
+  padding-right: 15%;
+  
+}
+.bird-img {
+  border-radius: 10px;
+  max-height: 200px;
+}
+
+@media (min-width: 671px) and (max-width: 770px) {
+  .bird-img {
+    width: 250px;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 670px) {
+    .audioplayer  audio {
+    width: 250px;
+  }
+  .bird-img {
+    width: 180px;
+  }
+
+}
+
+
+@media (min-width: 500px) and (max-width: 599px) { 
+  .bird-img {
+    width: 130px;
+  }
+  .audioplayer  audio {
+    width: 180px;
+  }
+
+}
+
+@media (min-width: 450px) and (max-width: 499px) { 
+  .bird-img {
+    width: 120px;
+  }
+  .audioplayer  audio {
+    width: 180px;
+  }
+
+}
+
+@media all and (max-width: 449px) { 
+  .bird-img {
+    width: 100px;
+  }
+  .audioplayer  audio {
+    width: 120px;
+  }
+
+}
